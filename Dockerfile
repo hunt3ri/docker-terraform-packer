@@ -21,8 +21,8 @@ RUN echo 'alias python=python3' >> ~/.bashrc
 RUN echo 'alias pip=pip3' >> ~/.bashrc
 RUN pip3 install --upgrade pip
 
-# Install python dependencies
-RUN pip3 install ansible awscli boto3
+# Install python dependencies psycopg2 required by ansible for postgres config
+RUN pip3 install ansible awscli boto3 psycopg2-binary
 
 # Ensure python is included in path
 ENV PATH="/usr/bin/python3:${PATH}"
