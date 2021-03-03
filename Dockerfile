@@ -1,10 +1,10 @@
 # Create docker container with Terraform installed, and suite of tools to ease working with AWS
-FROM ubuntu:19.10
+FROM ubuntu:20.04
 
-ENV TERRAFORM_VERSION 0.12.24
+ENV TERRAFORM_VERSION 0.14.7
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
-ENV PACKER_VERSION 1.5.5
+ENV PACKER_VERSION 1.7.0
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PACKER_VERSION}_linux_amd64.zip
 
 # Install dependencies

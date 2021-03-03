@@ -3,8 +3,14 @@ Container with Terraform, Packer, Ansible, AWSCLI and some useful DevOps utils
 
 ## Build 
 To build
-```dockerfile
+```commandline
 docker tag imageID hunteri/terraform-packer:0.2
 docker build -t hunteri/terraform-packer:latest .
 docker push hunteri/terraform-packer:latest
+```
+
+## Running
+```commandline
+docker run -dit hunteri/terraform-packer:latest bash
+docker attach <CONTAINER_NAME>
 ```
