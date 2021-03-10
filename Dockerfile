@@ -7,6 +7,8 @@ ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/te
 ENV PACKER_VERSION 1.7.0
 ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PACKER_VERSION}_linux_amd64.zip
 
+ENV AWSCLI_URL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     dos2unix \
@@ -22,10 +24,17 @@ RUN echo 'alias pip=pip3' >> ~/.bashrc
 RUN pip3 install --upgrade pip
 
 # Install python dependencies psycopg2 required by ansible for postgres config
-RUN pip3 install ansible awscli boto3 psycopg2-binary
+RUN pip3 install ansible boto3 psycopg2-binary
 
 # Ensure python is included in path
 ENV PATH="/usr/bin/python3:${PATH}"
+
+# Install awscli
+RUN curl -o /opt/awscliv2.zip $AWSCLI_URL && \
+    unzip /opt/awscliv2.zip && \
+    ./aws/install && \
+    rm /opt/awscliv2.zip && \
+    rm -Rf /opt/aws
 
 # Install Terraform
 RUN curl -o /root/terraform.zip $TERRAFORM_URL && \
