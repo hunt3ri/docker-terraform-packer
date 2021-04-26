@@ -13,6 +13,7 @@ ENV AWSCLI_URL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
 RUN apt-get update && apt-get install -y \
     dos2unix \
     curl \
+    figlet \
     git-core \
     python3-pip \
     vim \
