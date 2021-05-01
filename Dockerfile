@@ -25,7 +25,7 @@ RUN echo 'alias pip=pip3' >> ~/.bashrc
 RUN pip3 install --upgrade pip
 
 # Install python dependencies psycopg2 required by ansible for postgres config
-RUN pip3 install ansible boto3 click jinja2 psycopg2-binary
+RUN pip3 install ansible boto3 click psycopg2-binary
 
 # Ensure python is included in path
 ENV PATH="/usr/bin/python3:${PATH}"
