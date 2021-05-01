@@ -1,7 +1,7 @@
 # Create docker container with Terraform installed, and suite of tools to ease working with AWS
 FROM ubuntu:20.04
 
-ENV TERRAFORM_VERSION 0.15.0
+ENV TERRAFORM_VERSION 0.15.1
 ENV TERRAFORM_URL https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 ENV PACKER_VERSION 1.7.2
@@ -25,7 +25,7 @@ RUN echo 'alias pip=pip3' >> ~/.bashrc
 RUN pip3 install --upgrade pip
 
 # Install python dependencies psycopg2 required by ansible for postgres config
-RUN pip3 install ansible boto3 click psycopg2-binary
+RUN pip3 install ansible boto3 click jinja2 psycopg2-binary
 
 # Ensure python is included in path
 ENV PATH="/usr/bin/python3:${PATH}"
