@@ -9,12 +9,15 @@ ENV PACKER_URL https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PA
 
 ENV AWSCLI_URL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
 
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     dos2unix \
     curl \
     figlet \
     git-core \
+    nodejs
     python3-pip \
     vim \
     zip
@@ -23,6 +26,7 @@ RUN apt-get update && apt-get install -y \
 RUN echo 'alias python=python3' >> ~/.bashrc
 RUN echo 'alias pip=pip3' >> ~/.bashrc
 RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade virtualenv
 
 # Install python dependencies psycopg2 required by ansible for postgres config
 RUN pip3 install ansible boto3 click psycopg2-binary
@@ -46,3 +50,6 @@ RUN curl -o /root/terraform.zip $TERRAFORM_URL && \
 RUN curl -o /root/packer.zip $PACKER_URL && \
    unzip /root/packer.zip -d /usr/local/bin/ && \
    rm /root/packer.zip
+
+# Install AWS CDK
+RUN npm install -g aws-cdk
